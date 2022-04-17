@@ -8,13 +8,15 @@
     <body>
         <div class="image-group">
             <?php
-                $filenames = array("image1.png", "image2.png", "image3.png", "image4.png");
+                $filenames = array("image1.png", "notexist1", "image2.png", "image3.png", "image4.png", "notexist2");
                 foreach ($filenames as $filename) {
-                    echo <<<THUMB
-                    <span class="thumbnail">
-                        <img src="images/$filename">
-                    </span>
-                    THUMB;
+                    if (file_exists("images/$filename")) {
+                        echo <<<THUMB
+                        <span class="thumbnail">
+                            <img src="images/$filename">
+                        </span>
+                        THUMB;
+                    }
                 }
             ?>
         </div>

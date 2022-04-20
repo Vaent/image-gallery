@@ -11,7 +11,7 @@
                 $config = parse_ini_file('database/db_config.ini');
                 try {
                     $pg = new PDO("pgsql:host={$config['host']};port={$config['port']};dbname={$config['dbname']}", $config['username'], $config['password']);
-                    $images = $pg->query('SELECT image_name, image_description, file_format FROM image_details');
+                    $images = $pg->query('SELECT * FROM get_all_basic_image_details();');
                 } catch(Exception $ex) {
                     die('Unable to display images (could not retrieve details from the database)');
                 }

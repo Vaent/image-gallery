@@ -6,6 +6,15 @@
         <link rel="stylesheet" href="css/styles.css">
     </head>
     <body>
+        <div id="gallery-settings">
+            <p>Show older content?
+                <span class="toggle-selector">
+                    <span class="toggle-not-selected" data-toggle-position="0" onclick="toggle(this)">No </span><!--
+                 --><span class="toggle-slider" data-currently-selected="1" onclick="toggle(this)"></span><!--
+                 --><span class="toggle-currently-selected" data-toggle-position="1"> Yes</span>
+                </span>
+            </p>
+        </div>
         <div class="image-group">
             <?php
                 $config = parse_ini_file('database/db_config.ini');
@@ -28,5 +37,23 @@
                 }
             ?>
         </div>
+
+        <script>
+            function toggle(selector) {
+                if (selector.classList.contains("toggle-slider") || selector.classList.contains("toggle-not-selected")) {
+                    siblings = Array.from(selector.parentElement.children);
+                    slider = siblings.find(s => s.classList.contains("toggle-slider"));
+                    startPos = slider.dataset.currentlySelected;
+                    endPos = 1 ^ startPos;
+                    slider.dataset.currentlySelected = endPos;
+                    wasActive = siblings.find(s => s.dataset.togglePosition == startPos);
+                    wasActive.classList.replace("toggle-currently-selected", "toggle-not-selected");
+                    wasActive.onclick = function() {toggle(this)};
+                    wasInactive = siblings.find(s => s.dataset.togglePosition == endPos);
+                    wasInactive.classList.replace("toggle-not-selected", "toggle-currently-selected");
+                    wasInactive.onclick = null;
+                }
+            }
+        </script>
     </body>
 </html>

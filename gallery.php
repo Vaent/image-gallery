@@ -4,14 +4,16 @@
         <meta charset="utf-8">
         <title>Gallery</title>
         <link rel="stylesheet" href="css/styles.css">
+        <script src="scripts/toggles.js"></script>
     </head>
     <body>
         <div id="gallery-settings">
             <p>Show older content?
                 <span class="toggle-selector">
-                    <span class="toggle-not-selected" data-toggle-position="0" onclick="toggle(this)">No </span><!--
-                 --><span class="toggle-slider" data-currently-selected="1" onclick="toggle(this)"></span><!--
-                 --><span class="toggle-currently-selected" data-toggle-position="1"> Yes</span>
+                    <span class="toggle-not-selected" data-toggle-position="0" onclick="toggleOlderContent(this)">No</span><!--
+                    Line break between spans is commented to ensure continuity of clickable area (avoid insertion of non-clickable whitespace)
+                 --><span class="toggle-slider" data-currently-selected="1" onclick="toggleOlderContent(this)"></span><!--
+                 --><span class="toggle-currently-selected" data-toggle-position="1">Yes</span>
                 </span>
             </p>
         </div>
@@ -30,30 +32,12 @@
                     if (file_exists("images/$filename")) {
                         echo <<<THUMB
                         <span class="thumbnail">
-                            <img src="images/$filename" alt="{$image['image_description']}">
+                            <img src="images/$filename" alt="{$image['image_description']}" data-date-created="{$image['date_created']}">
                         </span>
                         THUMB;
                     }
                 }
             ?>
         </div>
-
-        <script>
-            function toggle(selector) {
-                if (selector.classList.contains("toggle-slider") || selector.classList.contains("toggle-not-selected")) {
-                    siblings = Array.from(selector.parentElement.children);
-                    slider = siblings.find(s => s.classList.contains("toggle-slider"));
-                    startPos = slider.dataset.currentlySelected;
-                    endPos = 1 ^ startPos;
-                    slider.dataset.currentlySelected = endPos;
-                    wasActive = siblings.find(s => s.dataset.togglePosition == startPos);
-                    wasActive.classList.replace("toggle-currently-selected", "toggle-not-selected");
-                    wasActive.onclick = function() {toggle(this)};
-                    wasInactive = siblings.find(s => s.dataset.togglePosition == endPos);
-                    wasInactive.classList.replace("toggle-not-selected", "toggle-currently-selected");
-                    wasInactive.onclick = null;
-                }
-            }
-        </script>
     </body>
 </html>

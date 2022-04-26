@@ -30,7 +30,7 @@ span.thumbnail img {
 
 span.toggle-selector {
     background-color: #DDDDDD;
-    padding: 0.5em;
+    padding: 0.5em 0;
     margin: 0.1em 1em;
 }
 
@@ -66,10 +66,12 @@ span.toggle-slider[data-currently-selected="1"]::before {
 
 .toggle-currently-selected {
     font-weight: bold;
+    padding: 0.3em;
     cursor: default;
 }
 
 .toggle-not-selected {
     color: #333333;
+    padding: 0.3em;
     cursor: pointer;
 }

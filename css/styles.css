@@ -75,3 +75,24 @@ span.toggle-slider[data-currently-selected="1"]::before {
     padding: 0.3em;
     cursor: pointer;
 }
+
+#expanded-image-overlay {
+    all: unset;
+    display: none;
+    position: fixed;
+    background-color: #99555599;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
+#expanded-image {
+    display: block;
+    position: absolute;
+    max-height: 100%;
+    max-width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

@@ -32,12 +32,17 @@
                     if (file_exists("images/$filename")) {
                         echo <<<THUMB
                         <span class="thumbnail">
-                            <img src="images/$filename" alt="{$image['image_description']}" data-date-created="{$image['date_created']}">
+                            <img src="images/$filename" alt="{$image['image_description']}" data-date-created="{$image['date_created']}" onclick="expandImage(this)">
                         </span>
                         THUMB;
                     }
                 }
             ?>
         </div>
+
+        <div id="expanded-image-overlay" onclick="collapseImage()">
+            <img id="expanded-image">
+        </div>
+        <script src="scripts/overlay.js"></script>
     </body>
 </html>

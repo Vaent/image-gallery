@@ -8,17 +8,22 @@
     <body>
         <div class="image-group">
             <span class="thumbnail">
-                <img src="images/image1.png" alt="HD proportioned image">
+                <img src="images/image1.png" alt="HD proportioned image" onclick="expandImage(this)">
             </span>
             <span class="thumbnail">
-                <img src="images/image2.png" alt="nonstandard landscape format">
+                <img src="images/image2.png" alt="nonstandard landscape format" onclick="expandImage(this)">
             </span>
             <span class="thumbnail">
-                <img src="images/image3.png" alt="rough square">
+                <img src="images/image3.png" alt="rough square" onclick="expandImage(this)">
             </span>
             <span class="thumbnail">
-                <img src="images/image4.png" alt="portrait format">
+                <img src="images/image4.png" alt="portrait format" onclick="expandImage(this)">
             </span>
         </div>
+
+        <div id="expanded-image-overlay" onclick="collapseImage()">
+            <img id="expanded-image">
+        </div>
+        <script src="scripts/overlay.js"></script>
     </body>
 </html>

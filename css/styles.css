@@ -26,6 +26,7 @@ span.thumbnail img {
     height: 160px;
     width: 200px;
     object-fit: contain;
+    cursor: zoom-in;
 }
 
 span.toggle-selector {
@@ -85,6 +86,7 @@ span.toggle-slider[data-currently-selected="1"]::before {
     width: 100%;
     top: 0;
     left: 0;
+    cursor: zoom-out;
 }
 
 #expanded-image {

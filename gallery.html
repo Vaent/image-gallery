@@ -20,7 +20,7 @@
         <div class="image-group">
             <span class="image-box" data-date-created="2020-01-01">
                 <span class="thumbnail">
-                    <img src="images/image-1.png" alt="HD proportioned image" onclick="expandImage(this)">
+                    <img src="images/image-1.png" alt="HD proportioned image" onclick="updateHash('image-1')">
                 </span>
                 <span class="image-label">
                     <i>Image 1</i>
@@ -28,7 +28,7 @@
             </span>
             <span class="image-box" data-date-created="2010-01-01">
                 <span class="thumbnail">
-                    <img src="images/image-2.png" alt="nonstandard landscape format" onclick="expandImage(this)">
+                    <img src="images/image-2.png" alt="nonstandard landscape format" onclick="updateHash('image-2')">
                 </span>
                 <span class="image-label">
                     <i>Image 2</i>
@@ -36,7 +36,7 @@
             </span>
             <span class="image-box" data-date-created="2020-07-31">
                 <span class="thumbnail">
-                    <img src="images/image-3.png" alt="rough square" onclick="expandImage(this)">
+                    <img src="images/image-3.png" alt="rough square" onclick="updateHash('image-3')">
                 </span>
                 <span class="image-label">
                     <i>Image 3</i>
@@ -44,7 +44,7 @@
             </span>
             <span class="image-box" data-date-created="2018-12-31">
                 <span class="thumbnail">
-                    <img src="images/image-4.png" alt="portrait format" onclick="expandImage(this)">
+                    <img src="images/image-4.png" alt="portrait format" onclick="updateHash('image-4')">
                 </span>
                 <span class="image-label">
                     <i>Image 4</i>
@@ -52,7 +52,7 @@
             </span>
         </div>
 
-        <div id="expanded-image-overlay" onclick="collapseImage()">
+        <div id="expanded-image-overlay" onclick="updateHash('')">
             <img id="expanded-image">
         </div>
         <script src="scripts/overlay.js"></script>

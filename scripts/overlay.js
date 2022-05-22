@@ -18,12 +18,16 @@ function handleUriFragment() {
         let img = document.querySelector(`img[src*="${frag}." i], img[src$="${frag}" i]`);
         if (img) {
             expandImage(img);
-            return;
         } else {
             location.hash = "";
         }
+    } else {
+        collapseImage();
     }
-    collapseImage();
+}
+
+function updateHash(fragment) {
+    location.hash = fragment;
 }
 
 addEventListener('hashchange', handleUriFragment);

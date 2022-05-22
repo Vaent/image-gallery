@@ -32,12 +32,13 @@
                 }
 
                 foreach ($images as $image) {
-                    $filename = imageNameToFilename($image['image_name']) . '.' . $image['file_format'];
-                    if (file_exists("images/$filename")) {
+                    $filename = imageNameToFilename($image['image_name']);
+                    $filePath = "images/$filename.{$image['file_format']}";
+                    if (file_exists("$filePath")) {
                         echo <<<THUMB
                         <span class="image-box" data-date-created="{$image['date_created']}">
                             <span class="thumbnail">
-                                <img src="images/$filename" alt="{$image['image_description']}" onclick="expandImage(this)">
+                                <img src="$filePath" alt="{$image['image_description']}" onclick="updateHash('$filename')">
                             </span>
                             <span class="image-label">
                                 <i>{$image['image_name']}</i>
@@ -49,7 +50,7 @@
             ?>
         </div>
 
-        <div id="expanded-image-overlay" onclick="collapseImage()">
+        <div id="expanded-image-overlay" onclick="updateHash('')">
             <img id="expanded-image">
         </div>
         <script src="scripts/overlay.js"></script>

@@ -15,11 +15,19 @@ div.image-group {
     justify-content: space-around;
 }
 
-span.thumbnail {
-    display: inline-flex;
+span.image-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
     background-color: #555555;
+    width: 200px;
     border: solid white;
     margin: 30px 20px;
+}
+
+span.thumbnail {
+    display: inline-flex;
+    border-bottom: 1px solid black;
 }
 
 span.thumbnail img {
@@ -27,6 +35,12 @@ span.thumbnail img {
     width: 200px;
     object-fit: contain;
     cursor: zoom-in;
+}
+
+span.image-label {
+    color: white;
+    text-align: center;
+    padding: 10px;
 }
 
 span.toggle-selector {

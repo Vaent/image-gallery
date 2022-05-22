@@ -27,12 +27,21 @@
                     die('Unable to display images (could not retrieve details from the database)');
                 }
 
+                function imageNameToFilename($n) {
+                    return str_replace(" ", "-", strtolower($n));
+                }
+
                 foreach ($images as $image) {
-                    $filename = "{$image['image_name']}.{$image['file_format']}";
+                    $filename = imageNameToFilename($image['image_name']) . '.' . $image['file_format'];
                     if (file_exists("images/$filename")) {
                         echo <<<THUMB
-                        <span class="thumbnail">
-                            <img src="images/$filename" alt="{$image['image_description']}" data-date-created="{$image['date_created']}" onclick="expandImage(this)">
+                        <span class="image-box" data-date-created="{$image['date_created']}">
+                            <span class="thumbnail">
+                                <img src="images/$filename" alt="{$image['image_description']}" onclick="expandImage(this)">
+                            </span>
+                            <span class="image-label">
+                                <i>{$image['image_name']}</i>
+                            </span>
                         </span>
                         THUMB;
                     }

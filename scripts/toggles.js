@@ -34,11 +34,11 @@ function toggleOlderContent(elementClicked) {
     if (toggle(elementClicked)) {
         // "show older content" toggle uses position 0 for "no", position 1 for "yes"
         const isSelectedShowOlderContent = elementClicked.parentElement.getElementsByClassName("toggle-slider")[0].dataset.currentlySelected;
-        for (let thumb of document.getElementsByClassName("thumbnail")) {
+        for (let img of document.getElementsByClassName("image-box")) {
             if (isSelectedShowOlderContent == true) {
-                thumb.style.display = "";
-            } else if (Date.parse(thumb.firstElementChild.dataset.dateCreated) < fiveYearsAgo) {
-                thumb.style.display = "none";
+                img.style.display = "";
+            } else if (Date.parse(img.dataset.dateCreated) < fiveYearsAgo) {
+                img.style.display = "none";
             }
         }
     }

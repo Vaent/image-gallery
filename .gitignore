@@ -1,1 +1,3 @@
+*.idea
 *.ini
+java-image-gallery/target/

@@ -1,3 +1,4 @@
 *.idea
 *.ini
+db_access.properties
 java-image-gallery/target/

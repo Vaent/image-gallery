@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr"
+      xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="utf-8">
         <title>Gallery</title>
@@ -18,36 +19,12 @@
             </p>
         </div>
         <div class="image-group">
-            <span class="image-box" data-date-created="2020-01-01">
+            <span class="image-box" th:each="file:${imageFileList}" th:data-date-created="${file.image.dateCreated}">
                 <span class="thumbnail">
-                    <img src="images/image-1.png" alt="HD proportioned image" onclick="updateHash('image-1')">
+                    <img th:src="${file.filePath}" th:alt="${file.image.imageDescription}" th:onclick="updateHash([[${file.filename}]])">
                 </span>
                 <span class="image-label">
-                    <i>Image 1</i>
-                </span>
-            </span>
-            <span class="image-box" data-date-created="2010-01-01">
-                <span class="thumbnail">
-                    <img src="images/image-2.png" alt="nonstandard landscape format" onclick="updateHash('image-2')">
-                </span>
-                <span class="image-label">
-                    <i>Image 2</i>
-                </span>
-            </span>
-            <span class="image-box" data-date-created="2020-07-31">
-                <span class="thumbnail">
-                    <img src="images/image-3.png" alt="rough square" onclick="updateHash('image-3')">
-                </span>
-                <span class="image-label">
-                    <i>Image 3</i>
-                </span>
-            </span>
-            <span class="image-box" data-date-created="2018-12-31">
-                <span class="thumbnail">
-                    <img src="images/image-4.png" alt="portrait format" onclick="updateHash('image-4')">
-                </span>
-                <span class="image-label">
-                    <i>Image 4</i>
+                    <i th:text="${file.image.imageName}"></i>
                 </span>
             </span>
         </div>

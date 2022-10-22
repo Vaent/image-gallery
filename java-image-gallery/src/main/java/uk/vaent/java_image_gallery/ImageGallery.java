@@ -41,6 +41,8 @@ public class ImageGallery {
     }
 
     private ImageAndFileDetails checkImageFile(Image image) {
+        if (image == null || image.imageName() == null) return null;
+
         String filename = image.imageName().toLowerCase().replace(" ", "-");
         String filePath = "images/" + filename + "." + image.fileFormat();
         if (staticResourcesDirectory.createRelative(filePath).exists()) {

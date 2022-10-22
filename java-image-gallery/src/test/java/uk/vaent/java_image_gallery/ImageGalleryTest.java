@@ -6,6 +6,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import java.sql.Date;
+import java.sql.SQLException;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -35,7 +36,8 @@ class ImageGalleryTest {
             .thenReturn(List.of(new Image("Image 1", "HD proportioned image", "png", new Date(0))));
         this.mockMvc.perform(get("/gallery"))
             .andExpect(status().isOk())
-            .andExpect(content().string(containsString("<img src=\"images/image-1.png\" alt=\"HD proportioned image\" onclick=\"updateHash(&quot;image-1&quot;)\">")));
+            .andExpect(content().string(containsString("<img src=\"images/image-1.png\" alt=\"HD proportioned image\" onclick=\"updateHash(&quot;image-1&quot;)\">")))
+            .andExpect(content().string(not(containsString(ImageGallery.databaseQueryErrorMessage))));
     }
 
     @Test
@@ -47,6 +49,15 @@ class ImageGalleryTest {
         this.mockMvc.perform(get("/gallery"))
             .andExpect(status().isOk())
             .andExpect(content().string(containsString("<img src=\"images/image-1.png\"")));
+    }
+
+    @Test
+    public void sqlExceptionIsHandled() throws Exception {
+        Mockito.when(databaseAccess.getAllBasicImageDetails())
+            .thenThrow(SQLException.class);
+        this.mockMvc.perform(get("/gallery"))
+            .andExpect(status().isOk())
+            .andExpect(content().string(containsString(ImageGallery.databaseQueryErrorMessage)));
     }
 
     @Test

@@ -1,7 +1,6 @@
 package uk.vaent.java_image_gallery;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -19,6 +18,8 @@ import uk.vaent.java_image_gallery.model.ImageAndFileDetails;
 @RequestMapping("/gallery")
 public class ImageGallery {
 
+    public static final String databaseQueryErrorMessage = "Unable to display images (could not retrieve details from the database)";
+
     private final ClassPathResource staticResourcesDirectory = new ClassPathResource("static/");
 
     @Autowired
@@ -34,8 +35,7 @@ public class ImageGallery {
                 .collect(Collectors.toList());
             model.addAttribute("imageFileList", imageAndFileDetailsList);
         } catch (SQLException ex) {
-            System.out.println(ex);
-            model.addAttribute("imageFileList", new ArrayList<ImageAndFileDetails>());
+            model.addAttribute("failedToObtainImageDetails", databaseQueryErrorMessage);
         }
         return "gallery";
     }

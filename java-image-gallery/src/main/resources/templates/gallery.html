@@ -27,6 +27,7 @@
                     <i th:text="${file.image.imageName}"></i>
                 </span>
             </span>
+            <span th:if="${#lists.isEmpty(imageFileList)}" th:text="${failedToObtainImageDetails}"></span>
         </div>
 
         <div id="expanded-image-overlay" onclick="updateHash('')">
